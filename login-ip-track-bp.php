@@ -48,10 +48,12 @@ function littbp_log_user_ip_address($user_login, $user) {
 }
 
 function littbp_get_user_public_ip_address() {
-    if (!empty($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+    if ( ! empty( $_SERVER[ 'CF-Connecting-IP' ] ) {
+        $public_ip_address = $_SERVER[ 'CF-Connecting-IP' ];
+    } elseif( ! empty( $_SERVER[ 'HTTP_X_FORWARDED_FOR' ] ) ) {
         $ip_addresses = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
         $public_ip_address = trim(end($ip_addresses));
-    } elseif (!empty($_SERVER['REMOTE_ADDR'])) {
+    } elseif ( ! empty( $_SERVER[ 'REMOTE_ADDR' ] ) ) {
         $public_ip_address = $_SERVER['REMOTE_ADDR'];
     } else {
         $public_ip_address = '';
