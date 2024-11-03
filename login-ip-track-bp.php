@@ -48,7 +48,7 @@ function littbp_log_user_ip_address($user_login, $user) {
 }
 
 function littbp_get_user_public_ip_address() {
-    if ( ! empty( $_SERVER[ 'CF-Connecting-IP' ] ) {
+    if ( ! empty( $_SERVER[ 'CF-Connecting-IP' ] ) ) {
         $public_ip_address = $_SERVER[ 'CF-Connecting-IP' ];
     } elseif( ! empty( $_SERVER[ 'HTTP_X_FORWARDED_FOR' ] ) ) {
         $ip_addresses = explode(',', $_SERVER['HTTP_X_FORWARDED_FOR']);
